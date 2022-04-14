@@ -22,6 +22,8 @@ def play_again():
             "Would you like to play again?\n" "Please type: Yes or No\n").lower()
         if 'yes' in play_again:
             intro()
+            global armor
+            armor = []
         elif 'no' in play_again:
             print_pause("Thank you for playing!")
             exit()
