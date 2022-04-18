@@ -77,11 +77,9 @@ def valid_input(prompt, option1, option2):
         option = input(prompt).lower()
         if option in option1:
             return option
-        else:
+        elif option in option2:
             return option2
-
-        print_pause("Sorry, please try again!\n"
-                    "Please enter 1 or 2")
+        print_pause("Sorry, I do not understand!")
 
 
 def destination():
