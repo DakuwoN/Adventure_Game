@@ -1,6 +1,7 @@
 # This imports time module so we can use print_pause with the
 # delay between print statements.
 
+from secrets import choice
 import time
 # This imports the random function so the game changes each time.
 import random
@@ -43,16 +44,12 @@ def print_pause(message):
 """ This function validates input for the destination of the player! """
 
 
-def valid_input(prompt, option1, option2):
+def valid_input(prompt, options):
     while True:
-        response = input(prompt).lower()
-        if option1 in response:
-            break
-        elif option2 in response:
-            break
-        else:
-            print_pause("Sorry, I do not understand!")
-    return response
+        option = input(prompt).lower()
+        if option in options:
+            return option
+        print_pause(f'The option "{option}" is invalid. Try again!')
 
 
 def intro():  # This function contains the game introduction message.
@@ -76,13 +73,13 @@ def intro():  # This function contains the game introduction message.
 
 def destination():
 
-    response = valid_input(
+    choice = valid_input(
         "Where do you want to go?\n\n"
         "1. Inside the empty tunnel\n"
-        "2. Towards the building\n", "1", "2")
-    if "1" in response:
+        "2. Towards the building\n", ['1', '2'])
+    if choice == '1':
         tunnel()
-    elif "2" in response:
+    else:
         building()
 
 
@@ -91,9 +88,9 @@ def destination():
 
 def play_again():
 
-    response = valid_input(
-        "Would you like to play again?\nYes or No\n",  "Yes", "No").lower()
-    if "Yes" in response:
+    choice = valid_input(
+        "Would you like to play again?\nYes or No\n",  ['Yes', 'No']).lower()
+    if choice == 'Yes':
         global the_weapons
         the_weapons = random.choice(weapons)
         global the_enemies
@@ -103,7 +100,7 @@ def play_again():
         global armor
         armor = []
         intro()
-    elif "No" in response:
+    else:
         print_pause("Thank you for playing!")
         exit()
 
@@ -161,66 +158,66 @@ def building():
 # This function asks the player if they would like to fight, followed along with
 # the consequences of fighting.
 def fight_choice():
-    while True:
-        fight_choice = input(
-            "1. Would you like to fight Kodos "
-            f"with your {the_weapons}?\n"
-            "2. Would you rather return to "
-            f"{the_warzone} and re-think the "
-            "situation?\n\n")
-        if fight_choice == '1':
-            if 'invincible' in armor:
-                print_pause(
-                    "You swing your Sword of "
-                    f"Dominance at {the_enemies} twice, "
-                    "dealing damage!")
-                print_pause(
-                    f"{the_enemies} retaliates with a "
-                    "very strong breath of fire "
-                    "that he sprays at you!")
-                print_pause("The fire does zero damage...")
-                print_pause(
-                    "Your 'invincible' armor has blocked all incoming damage!")
-                print_pause(
-                    "Kodos realizes he has no "
-                    "other choice, but to flee "
-                    f"{the_warzone}!")
-                print_pause(
-                    "Congratulations, you "
-                    "are victorious! You have "
-                    f"saved {the_warzone} from "
-                    f"{the_enemies}!")
 
-                play_again()
-            else:
-                print_pause(
-                    "You swing your Sword of "
-                    f"Dominance at {the_enemies} twice, "
-                    "dealing damage!")
-                print_pause(
-                    f"{the_enemies} retaliates with "
-                    "a very strong breath of "
-                    "fire that he sprays at you.")
-                print_pause(
-                    "Unfortunately, the fire deals "
-                    "100 damage to you, and "
-                    "you die.")
-                play_again()
-        elif fight_choice == '2':
+    choice = valid_input(
+        f"1. Would you like to fight {the_enemies} "
+        f"with your {the_weapons}?\n"
+        "2. Would you rather return to "
+        f"{the_warzone} and re-think the "
+        "situation?\n\n", ['1', '2'])
+    if choice == '1':
+        if 'invincible' in armor:
             print_pause(
-                f"You run as fast as you can to avoid {the_enemies}...")
+                "You swing your Sword of "
+                f"Dominance at {the_enemies} twice, "
+                "dealing damage!")
             print_pause(
-                f"{the_enemies} laughs at you... "
-                "and screams 'NO ONE CAN DEFEAT ME!'")
-            print_pause("You return back to the town "
-                        f"of {the_warzone} to re-think "
-                        "the situation.")
-            destination()
+                f"{the_enemies} retaliates with a "
+                "very strong breath of fire "
+                "that he sprays at you!")
+            print_pause("The fire does zero damage...")
+            print_pause(
+                "Your 'invincible' armor has blocked all incoming damage!")
+            print_pause(
+                "Kodos realizes he has no "
+                "other choice, but to flee "
+                f"{the_warzone}!")
+            print_pause(
+                "Congratulations, you "
+                "are victorious! You have "
+                f"saved {the_warzone} from "
+                f"{the_enemies}!")
+
+            play_again()
         else:
             print_pause(
-                "Sorry, I did not understand "
-                "you!\n" "Please select a choice: 1 "
-                "or 2\n")
+                "You swing your Sword of "
+                f"Dominance at {the_enemies} twice, "
+                "dealing damage!")
+            print_pause(
+                f"{the_enemies} retaliates with "
+                "a very strong breath of "
+                "fire that he sprays at you.")
+            print_pause(
+                "Unfortunately, the fire deals "
+                "100 damage to you, and "
+                "you die.")
+            play_again()
+    elif choice == '2':
+        print_pause(
+            f"You run as fast as you can to avoid {the_enemies}...")
+        print_pause(
+            f"{the_enemies} laughs at you... "
+            "and screams 'NO ONE CAN DEFEAT ME!'")
+        print_pause("You return back to the town "
+                    f"of {the_warzone} to re-think "
+                    "the situation.")
+        destination()
+    else:
+        print_pause(
+            "Sorry, I did not understand "
+            "you!\n" "Please select a choice: 1 "
+            "or 2\n")
 
 # This function starts the game and steps through two more functions
 # the first introduction and destination.
