@@ -1,8 +1,10 @@
 # This imports time module so we can use print_pause with the
 # delay between print statements.
+
 import time
 # This imports the random function so the game changes each time.
 import random
+from urllib import response
 
 
 # These are variable assignments that enable me to use the random module.
@@ -38,16 +40,19 @@ def print_pause(message):
     time.sleep(0)
 
 
-# def valid_input(prompt, option1, option2):
-#     while True:
-#         option = input(prompt).lower()
-#         if option in option1:
-#             break
-#         elif option in option2:
-#             break
-#         else:
-#             print_pause("Sorry, I do not understand!")
-#     return option
+""" This function validates input for the destination of the player! """
+
+
+def valid_input(prompt, option1, option2):
+    while True:
+        response = input(prompt).lower()
+        if option1 in response:
+            break
+        elif option2 in response:
+            break
+        else:
+            print_pause("Sorry, I do not understand!")
+    return response
 
 
 def intro():  # This function contains the game introduction message.
@@ -69,37 +74,26 @@ def intro():  # This function contains the game introduction message.
         "tunnel... that you are curious about...\n")
 
 
-""" This function validates input for the destination of the player! """
-
-
-def valid_input(prompt, option1, option2):
-    while True:
-        option = input(prompt).lower()
-        if option in option1:
-            return option
-        elif option in option2:
-            return option2
-        print_pause("Sorry, I do not understand!")
-
-
 def destination():
 
-    choice = valid_input(
+    response = valid_input(
         "Where do you want to go?\n\n"
         "1. Inside the empty tunnel\n"
         "2. Towards the building\n", "1", "2")
-    if choice == '1':
+    if "1" in response:
         tunnel()
-    else:
-        choice == '2'
+    elif "2" in response:
         building()
+
+
+""" This is not working... Yes or No just loops"""
 
 
 def play_again():
 
-    play_again = valid_input(
+    response = valid_input(
         "Would you like to play again?\nYes or No\n",  "Yes", "No").lower()
-    if play_again == 'Yes':
+    if "Yes" in response:
         global the_weapons
         the_weapons = random.choice(weapons)
         global the_enemies
@@ -109,10 +103,9 @@ def play_again():
         global armor
         armor = []
         intro()
-    else:
-        if play_again == 'No':
-            print_pause("Thank you for playing!")
-            exit()
+    elif "No" in response:
+        print_pause("Thank you for playing!")
+        exit()
 
 
 # This function is responsible for the possible outcomes and things
