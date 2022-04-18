@@ -1,5 +1,3 @@
-
-
 # This imports time module so we can use print_pause with the
 # delay between print statements.
 import time
@@ -20,34 +18,36 @@ the_warzone = random.choice(warzone)
 armor = []  # Empty list used to store the appended armor
 
 
+# def typewriter_simulator(message):
+#     for char in message:
+#         print(char, end='')
+#         if char in string.punctuation:
+#             time.sleep(.5)
+#         time.sleep(.03)
+#     print('')
+
+
 # This function creates the delay of 2 seconds between print statements.
+
+# def print_pause(message, delay=1):
+#     typewriter_simulator(message)
+#     time.sleep(delay)
+
 def print_pause(message):
     print(message, flush=True)
-    time.sleep(2)
+    time.sleep(0)
 
 
-# This function lets the player decide if they would like to
-# play the game again.
-def play_again():
-    while True:
-        play_again = input(
-            "Would you like to play again?\n"
-            "Please type: Yes or No\n").lower()
-        if 'yes' in play_again:
-            global the_weapons
-            the_weapons = random.choice(weapons)
-            global the_enemies
-            the_enemies = random.choice(enemy)
-            global the_warzone
-            the_warzone = random.choice(warzone)
-            global armor
-            armor = []
-            intro()
-        elif 'no' in play_again:
-            print_pause("Thank you for playing!")
-            exit()
-        else:
-            print_pause("Please enter 'Yes' or 'No'\n")
+# def valid_input(prompt, option1, option2):
+#     while True:
+#         option = input(prompt).lower()
+#         if option in option1:
+#             break
+#         elif option in option2:
+#             break
+#         else:
+#             print_pause("Sorry, I do not understand!")
+#     return option
 
 
 def intro():  # This function contains the game introduction message.
@@ -67,30 +67,58 @@ def intro():  # This function contains the game introduction message.
     print_pause(
         "To your left, there is an empty "
         "tunnel... that you are curious about...\n")
-    destination()
 
 
-# This functions asks the player where they would like to go in the game.
-def destination():
+""" This function validates input for the destination of the player! """
+
+
+def valid_input(prompt, option1, option2):
     while True:
-        choice = input(
-            "Where do you want to go?\n\n"
-            "1. Inside the empty tunnel\n"
-            "2. Towards the building\n")
-        if choice == '1':
-            tunnel()
-            break
-        elif choice == '2':
-            building()
-            break
+        option = input(prompt).lower()
+        if option in option1:
+            return option
         else:
-            print_pause(
-                "Sorry, I do not understand your selection.\n "
-                "(Please enter 1 or 2)\n")
+            return option2
+
+        print_pause("Sorry, please try again!\n"
+                    "Please enter 1 or 2")
+
+
+def destination():
+
+    choice = valid_input(
+        "Where do you want to go?\n\n"
+        "1. Inside the empty tunnel\n"
+        "2. Towards the building\n", "1", "2")
+    if choice == '1':
+        tunnel()
+    else:
+        choice == '2'
+        building()
+
+
+def play_again():
+
+    play_again = valid_input(
+        "Would you like to play again?\nYes or No\n",  "Yes", "No").lower()
+    if play_again == 'Yes':
+        global the_weapons
+        the_weapons = random.choice(weapons)
+        global the_enemies
+        the_enemies = random.choice(enemy)
+        global the_warzone
+        the_warzone = random.choice(warzone)
+        global armor
+        armor = []
+        intro()
+    else:
+        if play_again == 'No':
+            print_pause("Thank you for playing!")
+            exit()
 
 
 # This function is responsible for the possible outcomes and things
-# that can happen if they decide to enter the the tunnel.
+#  that can happen if they decide to enter the the tunnel.
 def tunnel():
 
     if 'invincible' in armor:
