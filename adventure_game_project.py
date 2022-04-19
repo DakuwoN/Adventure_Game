@@ -1,14 +1,15 @@
-# This imports time module so we can use print_pause with the
-# delay between print statements.
+"""This imports time module so we can use print_pause with the
+delay between print statements."""
 
+from urllib import response
+import random
 from secrets import choice
 import time
-# This imports the random function so the game changes each time.
-import random
-from urllib import response
+"""This imports the random function so the game changes each time."""
 
 
-# These are variable assignments that enable me to use the random module.
+"""These are variable assignments that enable me to use the random module."""
+
 weapons = ["Sword of Dominance", "Ultimate Blade", "Dragon Blade"]
 the_weapons = random.choice(weapons)
 
@@ -52,7 +53,10 @@ def valid_input(prompt, options):
         print_pause(f'The option "{option}" is invalid. Try again!')
 
 
-def intro():  # This function contains the game introduction message.
+"""This function contains the game introduction message."""
+
+
+def intro():
     print_pause("You find yourself in a warzone...")
     print_pause(f"The people of {the_warzone} are "
                 f"afraid of {the_enemies}... they say "
@@ -83,14 +87,14 @@ def destination():
         building()
 
 
-""" This is not working... Yes or No just loops"""
-
-
 def play_again():
 
     choice = valid_input(
-        "Would you like to play again?\nYes or No\n",  ['Yes', 'No']).lower()
-    if choice == 'Yes':
+        "Would you like to play again?\nYes or No\n",  ['yes', 'no']).lower()
+    if choice == 'no':
+        print_pause("Thank you for playing!")
+        exit(0)
+    elif choice == 'yes':
         global the_weapons
         the_weapons = random.choice(weapons)
         global the_enemies
@@ -100,13 +104,12 @@ def play_again():
         global armor
         armor = []
         intro()
-    else:
-        print_pause("Thank you for playing!")
-        exit()
 
 
-# This function is responsible for the possible outcomes and things
-#  that can happen if they decide to enter the the tunnel.
+"""This function is responsible for the possible outcomes and things
+ that can happen if they decide to enter the the tunnel."""
+
+
 def tunnel():
 
     if 'invincible' in armor:
@@ -141,9 +144,10 @@ def tunnel():
 
     destination()
 
-# This function is responsible for the actions and consequences of selecting
-# the building option. This function also calls the fight_choice() function
-# in it's final step.
+
+"""This function is responsible for the actions and consequences of selecting
+the building option. This function also calls the fight_choice() function
+in it's final step."""
 
 
 def building():
@@ -155,8 +159,10 @@ def building():
     fight_choice()
 
 
-# This function asks the player if they would like to fight, followed along with
-# the consequences of fighting.
+"""This function asks the player if they would
+ like to fight, followed along with the consequences of fighting."""
+
+
 def fight_choice():
 
     choice = valid_input(
@@ -219,8 +225,9 @@ def fight_choice():
             "you!\n" "Please select a choice: 1 "
             "or 2\n")
 
-# This function starts the game and steps through two more functions
-# the first introduction and destination.
+
+"""This function starts the game and steps through two more functions
+the first introduction and destination."""
 
 
 def play_game():
@@ -228,5 +235,5 @@ def play_game():
     destination()
 
 
-# This function call starts the game.
+"""This function call starts the game."""
 play_game()
