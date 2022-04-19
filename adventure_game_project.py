@@ -19,9 +19,9 @@ the_enemies = random.choice(enemy)
 warzone = ["Zaire", "Magic City", "Death Town"]
 the_warzone = random.choice(warzone)
 
-armor = []  # Empty list used to store the appended armor
+armor = []  """Empty list used to store the appended armor"""
 
-
+# Could not get this to work, because of Windows ?
 # def typewriter_simulator(message):
 #     for char in message:
 #         print(char, end='')
@@ -42,7 +42,7 @@ def print_pause(message):
     time.sleep(0)
 
 
-""" This function validates input for the destination of the player! """
+""" This function validates input from the player! """
 
 
 def valid_input(prompt, options):
@@ -75,6 +75,9 @@ def intro():
         "tunnel... that you are curious about...\n")
 
 
+""" This functions lets the player decide where to go."""
+
+
 def destination():
 
     choice = valid_input(
@@ -85,6 +88,9 @@ def destination():
         tunnel()
     else:
         building()
+
+
+""" This function asks if the player wnats to play again."""
 
 
 def play_again():
