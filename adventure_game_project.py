@@ -19,8 +19,8 @@ the_enemies = random.choice(enemy)
 warzone = ["Zaire", "Magic City", "Death Town"]
 the_warzone = random.choice(warzone)
 
-armor = []  """Empty list used to store the appended armor"""
-
+"""Empty list used to store the appended armor"""
+armor = []
 # Could not get this to work, because of Windows ?
 # def typewriter_simulator(message):
 #     for char in message:
@@ -180,8 +180,8 @@ def fight_choice():
     if choice == '1':
         if 'invincible' in armor:
             print_pause(
-                "You swing your Sword of "
-                f"Dominance at {the_enemies} twice, "
+                f"You swing your {the_weapons} "
+                f"at {the_enemies} twice, "
                 "dealing damage!")
             print_pause(
                 f"{the_enemies} retaliates with a "
@@ -191,7 +191,7 @@ def fight_choice():
             print_pause(
                 "Your 'invincible' armor has blocked all incoming damage!")
             print_pause(
-                "Kodos realizes he has no "
+                f"{the_enemies} realizes he has no "
                 "other choice, but to flee "
                 f"{the_warzone}!")
             print_pause(
@@ -203,8 +203,8 @@ def fight_choice():
             play_again()
         else:
             print_pause(
-                "You swing your Sword of "
-                f"Dominance at {the_enemies} twice, "
+                f"You swing your {the_weapons} "
+                f"at {the_enemies} twice, "
                 "dealing damage!")
             print_pause(
                 f"{the_enemies} retaliates with "
