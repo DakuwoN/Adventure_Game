@@ -1,4 +1,5 @@
-# Adventure Game Project @ Udacity
+## Overview
+Adventure Game Project @ Udacity
 
 The goal here is to create an adventure game.
 The game gives players a description of what's happening, and then asks them to make a choice.
