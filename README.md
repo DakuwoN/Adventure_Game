@@ -18,7 +18,7 @@ When the game is over, it asks if the player wants to play again.
 
 ## My process
 
-I began by created my repository through Git and then cloning to a remote repository on GitHub. Then, I used the import module twice, one for random, and the other for time. Next, I would create an array of strings, that would then be assigned to a variable. I created multiple functions, and conditional statements, along with print statements in order to build the game. Finally, I checked the user input with a valid input function. Testing was a common occurence during the building process. Once all of my testing passed, I had the game completed.
+I began by creating my repository through Git and then cloning to a remote repository on GitHub. Then, I used the import module twice, one for random, and the other for time. Next, I would create an array of strings, that would then be assigned to a variable. I created multiple functions, and conditional statements, along with print statements in order to build the game. Finally, I checked the user input with a valid input function. Testing was a common occurence during the building process. Once all of my testing passed, I had the game completed.
 
 ### Built with
 
